@@ -1,0 +1,26 @@
+{% set name = "cca-spec-babel" %}
+{% set version = "0.8.6" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/csdms/{{ name }}
+
+requirements:
+  build:
+    - python
+    - cca-babel
+    - libxml2
+    - libiconv [osx]
+
+  run:
+    - python
+    - cca-babel
+    - libxml2
+    - libiconv [osx]
+
+build:
+  number: 0
+  string: {{ environ.get('GIT_BUILD_STR', '') }}
