@@ -8,6 +8,7 @@ env:
   - BUILD_STR="dev"
   - TRAVIS_PYTHON_VERSION="2.7"
   - NUMPY_VERSION="1.9"
+  - secure: eyPR6HDuY18S73Ip45vuBlee4HkSlfQXLveAcJtxGiXJLu0nu8VmIy8c/u4lQNQcFtZrU4d3BqOnUo2pWwdXfkyzBNLyRmKMYlNpNsFwnE5cIFxf3hEoApSkGjMQj5Lgp+DKKwAnUNCaTW5cVEtOuhjUaJAg378j6Xa9lj1Ph8I/VnB2aLcB3jJhVPTRVXBcxK3qckhim0a2AQ4Qa9ZppWSBLCV/vDnDWEfOmelSFWDJ5/fER1zCPnM7tr787ZZop+2/sBGbISpU5QxziYKzjYPZXDYWeBes6mgnj5tV1iouIIBPrgrD7aO/GK13yCuvnyvmWIa6Gy92SQpn0l4VAjBRyMe9zK9NqPuEQp3/Za6yh7OeU61wS8vjiJf3jkbVspLwteSODSczqLB46R5hwmG2G4GT1mU+spThkX+jW8RDbDhPu21y5sxHzQXs+yYfzztaXbpd+re+4aiuy5mou2dYOjQV690biXE5SCEbJfjfiPegnjOrXVhLZ9CMoqDxhV+N04HCyKKH10i+pfiU5rWE5scaCfHAPrxoIEcEwjkdq6O80CJ+qucdG9AsiWYWD5SUHSon8OY/YyOh2KcDRnlL0GNIMht5uoj1vP6w1bOkyp7fRty7se8Mj/H0HJ4xYGup3ESCdVQAM0fW3hyb0xkRovseoqyfTrHKh0HgCEc=
 sudo: false
 install:
 - bash ci/travis/install_python.sh $HOME/miniconda
