@@ -23,4 +23,3 @@ requirements:
 
 build:
   number: 0
-  string: {{ environ.get('GIT_BUILD_STR', '') }}
