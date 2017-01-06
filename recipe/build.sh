@@ -12,7 +12,9 @@ else
   export PATH=$JAVA_HOME/bin:$PATH
 fi
 
-ln -s "$PREFIX/lib" "$PREFIX/lib64"
+if [! -d "$PREFIX/lib64" ]; then
+  ln -s "$PREFIX/lib" "$PREFIX/lib64"
+fi
 
 ./configure --prefix=$PREFIX --disable-contrib \
   --with-babel-config=$BABEL_CONFIG --with-libxml2=$PREFIX
