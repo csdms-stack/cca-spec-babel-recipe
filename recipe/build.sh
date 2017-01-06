@@ -20,4 +20,4 @@ ln -s "$PREFIX/lib" "$PREFIX/lib64"
 make all -j$CPU_COUNT
 make install
 
-rm "$PREFIX"/lib64
+rm "$PREFIX"/lib64 || echo "Unable to remove $PREFIX/lib64"
