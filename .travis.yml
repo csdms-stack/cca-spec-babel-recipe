@@ -1,19 +1,37 @@
-language: java
+language: generic
 os:
 - linux
 - osx
 env:
   global:
-  - THIS_PACKAGE=cca-spec-babel
-  - BUILD_STR="dev"
+  - CONDA_PREFIX=$HOME/miniconda
+  - MINICONDA_URL_BASE="https://repo.continuum.io/miniconda/Miniconda3-latest"
   - TRAVIS_PYTHON_VERSION="2.7"
-  - NUMPY_VERSION="1.9"
-  - secure: pcKLh/Yc9WuEu9HadtJ3tbM253oiUnr9UJfdBb2pcwJKkRBg/GAcr6HCsya89tzXO6gIDgbNjon2NPJaeTKwbbw01k8w5rvUZLz/wDrMADXo0fjsAW4rb0jQpQw1XBrt1qiX4YBPqYsD3h1/LbeLsOtVtRymFzCP5kwN13r6RuX5mR+368zE6kyP4Es7pCJ3rVU+Ciy9l+t6TpzLTbrNoAgzGNGGJ274e+H/Sv7jdM9OYnyn7Aqw81W0XpE5TyCoaGhe6wCpX2Yw5aCLS3a6SvB5WG7Skl5h/zCbcYtG1FL2m2LE7nLVagIJgsfb/xnYq5bpHPmnhPrOLX9Et/qAtBrH03c+1K5RGsLIvMyRRvUNMb8VYPP/l4AqE9o3jNf/cpDJ/OeyekRNkP3FYBE6FywDm9ISkNqnJtgTGSPl9/K6t3+N2do44jg6qze9XeN1AICXaimoOOglRA7ZgS8WMycvHvVGr902OxcNZrhGTmbJwLyof8SKiq8zMuuZEK99WhaNcznhJgTRSBS6O6PsWdfWzbSlRcMiS83TNnIlSBy2wAFf4HaS0qcElBYAL2M/BHVAJqPNfQ+kdUJjtiSK5iLW3444pauJ8/ES3MUZZ/aeZA4cBLp3lBxN6JJ8ZsSoRS+Gf5uUYeUZZ3SUmv8VHM3CrE+ZihOIFE/AvjIU5Mw=
 sudo: false
+before_install:
+- |
+  if [[ $TRAVIS_OS_NAME == "osx" ]]; then
+    brew remove --force $(brew list)
+    brew cleanup -s
+    rm -rf $(brew --cache)
+  fi
 install:
-- bash ci/travis/install_python.sh $HOME/miniconda
-- export PATH="$HOME/miniconda/bin:$PATH"
+- |
+  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    OS="MacOSX-x86_64"
+  else
+    OS="Linux-x86_64"
+  fi
+- curl $MINICONDA_URL_BASE-$OS.sh > $HOME/minconda.sh
+- bash $HOME/minconda.sh -b -p $CONDA_PREFIX
+- export PATH="$CONDA_PREFIX/bin:$PATH"
+- hash -r
+- conda config --set always_yes yes --set changeps1 no
+- conda install python=$TRAVIS_PYTHON_VERSION
+- conda install -q conda-build anaconda-client coverage sphinx
 script:
-- conda build recipe -c conda-forge -c csdms-stack
+- conda build ./recipe -c csdms-stack -c conda-forge
 after_success:
-- bash ci/travis/deploy_to_anaconda.sh $THIS_PACKAGE
+- curl https://raw.githubusercontent.com/csdms/ci-tools/master/anaconda_upload.py
+  > $HOME/anaconda_upload.py
+- echo $ANACONDA_TOKEN | python $HOME/anaconda_upload.py ./recipe --channel=main --org=csdms-stack --token=-
