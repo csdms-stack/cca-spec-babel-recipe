@@ -24,8 +24,8 @@ install:
   else
     OS="Linux-x86_64"
   fi
-- curl $MINICONDA_URL_BASE-$OS.sh > $HOME/minconda.sh
-- bash $HOME/minconda.sh -b -p $CONDA_PREFIX
+- curl $MINICONDA_URL_BASE-$OS.sh > $HOME/miniconda.sh
+- bash $HOME/miniconda.sh -b -p $CONDA_PREFIX
 - export PATH="$CONDA_PREFIX/bin:$PATH"
 - hash -r
 - conda config --set always_yes yes --set changeps1 no
