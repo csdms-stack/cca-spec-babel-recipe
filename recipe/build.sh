@@ -17,7 +17,8 @@ if [! -d "$PREFIX/lib64" ]; then
 fi
 
 ./configure --prefix=$PREFIX --disable-contrib \
-  --with-babel-config=$BABEL_CONFIG --with-libxml2=$PREFIX
+  --with-babel-config=$BABEL_CONFIG --with-libxml2=$PREFIX \
+  --with-babel-branch=2.0.0
 
 make all -j$CPU_COUNT
 make install

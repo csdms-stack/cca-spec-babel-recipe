@@ -7,19 +7,23 @@ package:
 
 source:
   git_url: https://github.com/csdms/{{ name }}
+  patches:
+    - babel-20.patch
 
 requirements:
   build:
     - python >=2.7.13,<3
-    - cca-babel <2
+    - cca-babel >=2
     - libxml2
     - libiconv [osx]
 
   run:
     - python >=2.7.13,<3
-    - cca-babel <2
+    - cca-babel >=2
     - libxml2
     - libiconv [osx]
 
 build:
   number: 0
+  features:
+    - cb20

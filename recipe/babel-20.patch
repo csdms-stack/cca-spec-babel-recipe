@@ -1,0 +1,14 @@
+diff --git a/configure b/configure
+index 908a58c..616917d 100755
+--- a/configure
++++ b/configure
+@@ -5134,7 +5134,8 @@ if test "x$BIN_BABEL_CONFIG" != "x" -a -x $BIN_BABEL_CONFIG ; then
+     fi
+   fi
+ 
+-  CUSTOM_BABEL_VERSION="NONE"
++  # CUSTOM_BABEL_VERSION="NONE"
++  CUSTOM_BABEL_VERSION="2.0.0"
+   if test "x$CCA_BABEL_FORCE" != "x" ; then
+      if test "$CCA_BABEL_FORCE" = "$CCASPEC_BABEL_VERSION" ; then
+         CUSTOM_BABEL_VERSION=$CCASPEC_BABEL_VERSION
