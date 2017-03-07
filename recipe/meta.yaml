@@ -10,13 +10,13 @@ source:
 
 requirements:
   build:
-    - python >=2.7.13
+    - python >=2.7.13,<3
     - cca-babel
     - libxml2
     - libiconv [osx]
 
   run:
-    - python >=2.7.13
+    - python >=2.7.13,<3
     - cca-babel
     - libxml2
     - libiconv [osx]
