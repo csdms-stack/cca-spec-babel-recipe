@@ -4,6 +4,7 @@ os:
 - osx
 env:
   global:
+  - MACOSX_DEPLOYMENT_TARGET="10.9"
   - CONDA_PREFIX=$HOME/miniconda
   - MINICONDA_URL_BASE="https://repo.continuum.io/miniconda/Miniconda3-latest"
   - TRAVIS_PYTHON_VERSION="2.7"
