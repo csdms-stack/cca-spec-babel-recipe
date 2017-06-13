@@ -2,7 +2,6 @@ language: generic
 os:
 # - linux
 - osx
-osx_image: xcode6.4
 env:
   matrix:
   - NUMPY_VERSION="1.11"
@@ -19,9 +18,11 @@ sudo: false
 before_install:
 - |
   if [[ $TRAVIS_OS_NAME == "osx" ]]; then
-    brew remove --force $(brew list)
-    brew cleanup -s
-    rm -rf $(brew --cache)
+    echo "Removing homebrew from Travis CI to avoid conflicts."
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall > ~/uninstall_homebrew
+    chmod +x ~/uninstall_homebrew
+    ~/uninstall_homebrew -fq
+    rm ~/uninstall_homebrew
   fi
 install:
 - |
