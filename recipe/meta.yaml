@@ -11,12 +11,16 @@ source:
 requirements:
   build:
     - python >=2.7.13,<3
+    - numpy x.x [osx]
+    - numpy [not osx]
     - cca-babel <2
     - libxml2
     - libiconv [osx]
 
   run:
     - python >=2.7.13,<3
+    - numpy x.x [osx]
+    - numpy [not osx]
     - cca-babel <2
     - libxml2
     - libiconv [osx]
