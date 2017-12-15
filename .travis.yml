@@ -1,6 +1,5 @@
 language: generic
 os:
-# - linux
 - osx
 env:
   global:
@@ -8,8 +7,7 @@ env:
   - CONDA_PREFIX=$HOME/miniconda
   - MINICONDA_URL_BASE="https://repo.continuum.io/miniconda/Miniconda3-latest"
   - TRAVIS_PYTHON_VERSION="2.7"
-  - secure: AnQLkwJHIetxSOQxyEIixLkzHxl2Lls+E69vsWoFS62/+Uw3uDDpqesRKJH4PBUcodPZgAVPeq0JKZw5QjlA8ZEZ85djnTf1KtFcg0BfLhJuiFDcW5c/JeFP32jW+rQAiWgzz/ZHKwVUKo0149PsmY1hWlAA6YVl5tnI5qcG4q8ILAERQxjdbx8ZnCLwiJXXXu2SrfOW/LGIahre1zFbhWD3TGTAFeu+cDCx+KTtZn0Ayqx0LPC+Mq+bstV3HTUl6inYi2Q0queN7ERccsCjwAxr1ezRDql8mugi0Y/wmsR7V6TQs+aRXSk7uf+IvQdnI7jE8FBRTJYBi5bqisxWYT20TYKLdlfFOLJTvzseKP2m3tFZN5YLM+vQBz2bWqGon53/AfkhLLPPbNd1laSetwGLV0TveVDoQxBe5FyKqs/i3L+Et9ZIaQ+x9BPEJHdBtNMi/6vpB3b9PUuXXzwsX0N1VLyn6AFYfMjOSulobcNr7Wcf+8mZkJjyk7jv1mXiA1bqJPkt0zTUd/wsaNWqU9rW1SuutrwGiKHfRwMisw9aCsng1f2KCO94iRNygh4yNQ05g4fdCJCM5nkxd+CTfM87q/MYW7TCpp9Mh7BRMSy0RYp0bx4UlNRf6SPI3Y2lJqKScK+atdCPpkCZYDoISVQsER2e2Tcc/JXO3Vj36a0=
-  - secure: T3d/CNrQXR4VMjZHKEvOkA63D+33jFRAuBVU32Z8nzq2FJR03rag4ZtqMGc7G+eP7aHFlAmNzIyO8BKnx4nFHYDrBNsuXRLNxc6F1iODo4mb9VKc980G/w434wc9oP4waqPmz+y9rYmqPcmUUWEfWOiY6Lb7Jx7+Zs7v8ETmtoP8EeyXb/S4t+Y5v8I5EncbD/IKF5f6G2o8DTwR3xUeM1PqB18Qk+/1CuXT/AYhOsZ0235cOGsNvISRuBPEXLe4hWKhHDM36/+93ykvGGBTxZ2qn1nCRNAfJfNoCY31mQXG4YmX7ilDArmp0o9BIzQRbfNDVRKY9KeyJeg8iVUYsskWKgHZcEQVVU/hLQoPr8w6QJ9719P3Wvg/RW3Td2ue7cPNnonwuaC+O/KmgQpbgOGGG7e2lTRQG87ov4Z4tKXAiBkLXG3sD/OMScOcQ6jChw75DlNdzfMW1C2+0svw0NAUdoAc19qEowg+f3DlvGRwqlC0eI7Nd3TzM3c/oGnnIFDLfkEx0pPnPQ7lERKTFgKU9zvN0hfDU8tsC3zzBliqpj2FRipyO0A28amdp/HxbaDi38/cH5qSN5tu161FxjmPzOW8k8EXE3fOqrkq4rYYX7INWuVozK0s+E566V1LpcNDHopSiol+MDEACWDVw4n9eFdJFbqElDUk1cp2RrQ=
+  - secure: DOGsAu/vbNmWYnyV80uK63qvj3NjtFEj++EWoNvuMwC+6JguDVnkiR9ogq55PaMmeBeMEQDBpL9DxPsVxQtdwbWYlwFhfuDy7gKb4ie2RADCq3PFF3r1lehw5US1WSx2JVIFuEwXoVEqHKoHLjqyam7YWTk0e/mcC7RgVPDnYGmubUnJGfyK4PV9ufjQ8043GhZpXBLA/4jQvtRYCzmPHRP2zaqPWSC5KiKJ/lt30ewSbGGUmtZg/VWakC4hctyjY/dNRtHt6bxGgGJgiWHQdJEhqy1XPCKvJnsN5sDB4WRmujsO/VNQsSVUfHJ8uB4WZyosAXfOOjoMRAiXeWvbzVpeb0o1N0WW6qY1Zn6RtEgeZj1Sl1rV6DMTbpnmYjeSEnZCu6wBemw5s+R8/e6AnWKPof4pRT/lo3c+57mCG2Nu4YXxB64ckRYSDhS7PFXyvxw40qXrYoFpQOkeOoNBaMc9rVoGcIBOMmsQ4c+9uVWu48G+SxGuuBwDNStBVBtlq9yqPCBqjjrFvpzazzu6yhImbDwQHv2uhL+xQBkslwhNKxhh19CXAHCgVHnwnuB8RMaRrFieBvjoUQjAOBc4HCS796c5PNmWKBXgauIIfb5jLfsj2ewYZOjIrJvjHl31VALWVySpWJY6I5ZRiQqffV9AHNVc3iz/R4E7Zn+gl44=
 sudo: false
 before_install:
 - |
@@ -35,9 +33,9 @@ install:
 - conda install python=$TRAVIS_PYTHON_VERSION
 - conda install -q conda-build anaconda-client coverage sphinx
 script:
-- conda build ./recipe -c csdms-stack -c conda-forge
+- conda build ./recipe -c csdms-stack -c conda-forge --old-build-string
 after_success:
 - curl https://raw.githubusercontent.com/csdms/ci-tools/master/anaconda_upload.py
   > $HOME/anaconda_upload.py
 - echo $ANACONDA_TOKEN | python $HOME/anaconda_upload.py ./recipe --channel=main --org=csdms-stack
-  --token=-
+  --old-build-string --token=-
